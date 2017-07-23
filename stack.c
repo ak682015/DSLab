@@ -1,41 +1,35 @@
 #include<stdio.h>
-#include<stdlib.h>
 #define MAX_SIZE 10
 
 int stack[MAX_SIZE],top=-1;
-
 int isFull(){
 	//returns 1 if stack is full else returns -1
-	return (top==MAX_SIZE-1)?1:-1;
+	return top==MAX_SIZE-1;
+
 }
 
 int isEmpty(){
 //returns 1 if stack is empty else returns -1
-	return (top==-1)?1:-1;
+	return top==-1;
 
 }
 
 int peek(){
 //return element at the top of stack
-
-return stack[top];
+	return stack[top];
 }
 
 void push(int e){
 //inserts an element into stack
-
-	if(top!=isFull())
+	if(!isFull())
 	{
-		//increment the top 
-		top++;
-		//set top of stack equal e
-		top=e;
-		//msg element e successfully inserted
-		printf("%d is succesfully inserted\n",e);
+		top++;//increment the top
+		stack[top]=e;//set top of stack equal e
+		printf("\nYour element %d is successfully inserted",e);//msg element e successfully inserted
 	}
 	else{
 		//msg stack overflow
-		printf("STACK OVERFLOW\n");
+		printf("\nElement cannot be inserted. Stack Overflow!");
 	}
 }
 
@@ -44,51 +38,52 @@ void pop(){
 	int d;
 	if(!isEmpty())
 	{
-		//d=top of stack
-		d=top;
-		//decrement the top
-		top--;
-		//msg element d successfully deleted
-		printf("%d is succesfully deleted\n",d);
+		d=stack[top];//d=top of stack
+		top--;//decrement the top
+		printf("\nYour element %d is successfully deleted",d);//msg element d successfully deleted
 	}
 	else{
-		//msg stack underflow
-			printf("STACK UNDERFLOW\n");
+		printf("\nElement cannot be deleted. Stack Underflow!");//msg stack underflow
 	}
 }
-
-int main(){
-	int choice,e,i;
+void display()
+{   int i;
+    for(i=1;i<MAX_SIZE;i++)
+        printf("%d ",stack[i]);
+}
+int main()
+{
+    int choice,e,rep;
 	do
 	{
 		//display menu 1.peek 2.push 3.pop 4.exit
-		printf("enter your choice 1.peek 2.push 3.pop 4.exit\n");
-		//take input in choice variable
-		scanf("%d",&choice);
+		printf("\nEnter\n1.Peek\n2.Push\n3.Pop\n4.Exit\n5.SDisplay\n");
+		printf("Enter your choice: ");
+		scanf("%d",&choice);	//take input in choice variable
 		switch(choice){
 			case 1:
-				//call peek function
-				i=peek();
-				printf("%d\n",i);
+				e=peek();//call peek function
+				printf("\nElement at the top of stack is : %d",e);
 				break;
 			case 2:
-				//call push function
+				printf("\nEnter the elment to be inserted: ");
 				scanf("%d",&e);
-				push(e);
+				push(e);//call push function
 				break;
 			case 3:
-				//call pop function
-				pop();
+				pop();//call pop function
 				break;
 			case 4:
-				//call exit(0) function or return 0
-				exit(0);
+				exit(0);//call exit(0) function or return 0
 				break;
-			default:
-				//invalid choice
-				printf("Invalid Choice");				
+            case 5:
+                display();
+                break;
+            default:
+				printf("\nInvalid Choice");//invalid choice
+				break;
 		}
 	}while(1);
-	printf("%d",top);
-	return 0;
+return 0;
+
 }
