@@ -1,35 +1,41 @@
 #include<stdio.h>
+#include<stdlib.h>
 #define MAX_SIZE 10
 
 int stack[MAX_SIZE],top=-1;
+
 int isFull(){
 	//returns 1 if stack is full else returns -1
-	return top==MAX_SIZE-1;
-
+	return (top==MAX_SIZE-1)?1:-1;
 }
 
 int isEmpty(){
 //returns 1 if stack is empty else returns -1
-	return top==-1;
+	return (top==-1)?1:-1;
 
 }
 
 int peek(){
 //return element at the top of stack
-	return stack[top];
+
+return stack[top];
 }
 
 void push(int e){
 //inserts an element into stack
-	if(!isFull())
+
+	if(whether the stack is not full)
 	{
-		top++;//increment the top
-		stack[top]=e;//set top of stack equal e
-		printf("\nYour element %d is successfully inserted",e);//msg element e successfully inserted
+		//increment the top 
+		top++;
+		//set top of stack equal e
+		top=e;
+		//msg element e successfully inserted
+		printf("%d is succesfully inserted\n",e);
 	}
 	else{
 		//msg stack overflow
-		printf("\nElement cannot be inserted. Stack Overflow!");
+		printf("STACK OVERFLOW\n");
 	}
 }
 
@@ -38,52 +44,51 @@ void pop(){
 	int d;
 	if(!isEmpty())
 	{
-		d=stack[top];//d=top of stack
-		top--;//decrement the top
-		printf("\nYour element %d is successfully deleted",d);//msg element d successfully deleted
+		//d=top of stack
+		d=top;
+		//decrement the top
+		top--;
+		//msg element d successfully deleted
+		printf("%d is succesfully deleted\n",d);
 	}
 	else{
-		printf("\nElement cannot be deleted. Stack Underflow!");//msg stack underflow
+		//msg stack underflow
+			printf("STACK UNDERFLOW\n");
 	}
 }
-void display()
-{   int i;
-    for(i=1;i<MAX_SIZE;i++)
-        printf("%d ",stack[i]);
-}
-int main()
-{
-    int choice,e,rep;
+
+int main(){
+	int choice,e,i;
 	do
 	{
 		//display menu 1.peek 2.push 3.pop 4.exit
-		printf("\nEnter\n1.Peek\n2.Push\n3.Pop\n4.Exit\n5.SDisplay\n");
-		printf("Enter your choice: ");
-		scanf("%d",&choice);	//take input in choice variable
+		printf("enter your choice 1.peek 2.push 3.pop 4.exit\n");
+		//take input in choice variable
+		scanf("%d",&choice);
 		switch(choice){
 			case 1:
-				e=peek();//call peek function
-				printf("\nElement at the top of stack is : %d",e);
+				//call peek function
+				i=peek();
+				printf("%d\n",i);
 				break;
 			case 2:
-				printf("\nEnter the elment to be inserted: ");
+				//call push function
 				scanf("%d",&e);
-				push(e);//call push function
+				push(e);
 				break;
 			case 3:
-				pop();//call pop function
+				//call pop function
+				pop();
 				break;
 			case 4:
-				exit(0);//call exit(0) function or return 0
+				//call exit(0) function or return 0
+				exit(0);
 				break;
-            case 5:
-                display();
-                break;
-            default:
-				printf("\nInvalid Choice");//invalid choice
-				break;
+			default:
+				//invalid choice
+				printf("Invalid Choice");				
 		}
 	}while(1);
-return 0;
-
+	printf("%d",top);
+	return 0;
 }
